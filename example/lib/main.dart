@@ -24,8 +24,13 @@ class MyApp extends StatelessWidget {
               ),
               TextButton(
                 child: Text("Beep Android Custom"),
-                onPressed: () => FlutterBeep.playSysSound(
-                    AndroidSoundIDs.TONE_CDMA_ABBR_ALERT),
+                onPressed: () async {
+                  await FlutterBeep.playSysSound(
+                      AndroidSoundIDs.TONE_CDMA_LOW_PBX_SS);
+                  await Future.delayed(const Duration(seconds: 1), () async {
+                    await FlutterBeep.stopSysSound();
+                  });
+                },
               ),
               TextButton(
                 child: Text("Beep something"),
